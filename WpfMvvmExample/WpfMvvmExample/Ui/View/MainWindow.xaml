@@ -1,0 +1,74 @@
+﻿<Window
+    x:Class="WpfMvvmExample.Ui.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfMvvmExample.Ui.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:WpfMvvmExample.Ui.ViewModel"
+    Title="MainWindow"
+    Width="400"
+    Height="450"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Content="{Binding Info}" />
+
+        <Separator
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3" />
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Button Command="{Binding OpenBasicControlWindowCommand}" Content="Basic Controls" />
+            <Button Command="{Binding OpenRichTextBoxWindowCommand}" Content="RichTextBox example" />
+        </StackPanel>
+
+        <Separator
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3" />
+
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            FontStyle="Italic"
+            FontWeight="Bold"
+            Text="Log"
+            TextDecorations="Underline" />
+
+        <TextBox
+            Name="TextBoxLog"
+            Grid.Row="5"
+            Grid.Column="1"
+            VerticalContentAlignment="Top"
+            HorizontalScrollBarVisibility="Auto"
+            Text="{Binding Log}"
+            TextChanged="TextBoxBase_OnTextChanged"
+            TextWrapping="Wrap"
+            VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</Window>
